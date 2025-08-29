@@ -12,6 +12,7 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* A detecção de tema escuro pode permanecer para outras partes do site */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -23,4 +24,311 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer base {
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .animate-fade-in {
+    animation: fade-in 0.4s ease-out forwards;
+  }
+
+  @keyframes fade-in-down {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-in-down {
+    animation: fade-in-down 0.3s ease-out;
+  }
+  
+  @keyframes slide-in-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-slide-in-up {
+    animation: slide-in-up 0.3s ease-out forwards;
+  }
+}
+
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #4a4a4a;
+  border-radius: 4px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #6a6a6a;
+}
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px; /* Largura da barra de rolagem */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #2a2a2a; /* Cor de fundo da trilha */
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #555; /* Cor da barra de rolagem */
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #777; /* Cor da barra ao passar o mouse */
+}
+
+
+@layer components {
+  /* Input style para TEMA CLARO */
+  .input-style {
+    @apply w-full bg-white p-3 rounded-md text-sm text-gray-900 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-colors duration-200 placeholder:text-gray-400;
+  }
+  .btn-primary {
+    @apply px-4 py-2 bg-red-600 rounded-md hover:bg-red-500 disabled:opacity-50 font-semibold text-white transition-colors;
+  }
+  .btn-secondary {
+    @apply px-4 py-2 rounded-md bg-gray-200 text-gray-700 hover:bg-gray-300 font-semibold transition-colors;
+  }
+  .btn-primary-outline {
+    @apply px-4 py-2 bg-transparent border border-red-600 text-red-600 rounded-md hover:bg-red-600 hover:text-white font-semibold transition-colors;
+  }
+  /* Em globals.css, dentro de @layer components */
+
+.btn-primary {
+  @apply px-4 py-2 bg-red-600 rounded-md hover:bg-red-500 disabled:bg-gray-400 disabled:opacity-70 disabled:cursor-not-allowed font-semibold text-white transition-colors;
+}
+}
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700');
+@import url('https://fonts.googleapis.com/css?family=Catamaran:400,800');
+
+.notfound-page {
+  background-color: #f1f1f1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centraliza na vertical */
+  align-items: center;     /* Centraliza na horizontal */
+  text-align: center;
+  color: #000000;
+  padding: 20px;
+}
+
+/* Container dos números */
+.error-container {
+  text-align: center;
+  font-size: 160px; /* Aumentado */
+  font-family: 'Catamaran', sans-serif;
+  font-weight: 800;
+  margin: 50px 0;
+}
+.error-container > span {
+  display: inline-block;
+  position: relative;
+}
+
+/* Número 4 */
+.error-container > span.four {
+  width: 150px;
+  height: 50px;
+  border-radius: 999px;
+  background: linear-gradient(to right, #e30914, #b91d32);
+}
+.error-container > span.four:before {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 50px;
+  height: 170px;
+  left: 65px;
+  bottom: -50px;
+  border-radius: 999px;
+  background: linear-gradient(to top, #35007c, #b91d32, #e30914);
+}
+.error-container > span.four:after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 150px;
+  height: 50px;
+  transform: rotate(-49.5deg);
+  left: -20px;
+  bottom: 40px;
+  border-radius: 999px;
+  background: linear-gradient(to right, #35007c, #e30914, #b91d32);
+}
+
+/* Número 0 */
+.error-container > span.zero {
+  vertical-align: text-top;
+  width: 180px;
+  height: 180px;
+  border-radius: 999px;
+  background: linear-gradient(to top right, #35007c, #b91d32, #e30914);
+  overflow: hidden;
+  animation: bgshadow 5s infinite;
+}
+.error-container > span.zero:after {
+  content: '';
+  display: block;
+  position: absolute;
+  border-radius: 999px;
+  width: 80px;
+  height: 80px;
+  left: 50px;
+  bottom: 50px;
+  background: #ffffff;
+  box-shadow: -2px 2px 2px 0px rgba(0, 0, 0, 0.1);
+}
+
+/* Animação do 0 */
+@keyframes bgshadow {
+  0% {
+    box-shadow: inset -180px 180px 0px 5px rgba(0, 0, 0, 0.3);
+  }
+  45% {
+    box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0.1);
+  }
+  100% {
+    box-shadow: inset 180px -180px 0px 5px rgba(0, 0, 0, 0.3);
+  }
+}
+
+
+
+/* Texto abaixo do título */
+.zoom-area { 
+  max-width: 600px;
+  margin: 20px auto 40px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Botão */
+.link-container {
+  text-align: center;
+}
+a.more-link {
+  text-transform: uppercase;
+  font-size: 15px;
+  background-color: #e30914;
+  padding: 14px 24px;
+  border-radius: 6px;
+  color: #fff;
+  display: inline-block;
+  margin-top: 40px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+a.more-link:hover {
+  background-color: #b91d32;
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(227, 9, 20, 0.5);
+}
+
+/* Acessibilidade */
+.screen-reader-text {
+  position: absolute;
+  top: -9999em;
+  left: -9999em;
+}
+/* Adicione este código ao final do seu arquivo styles/globals.css */
+
+/* A overlay que cobre a tela toda com um fundo semi-transparente */
+.loader-overlay {
+  position: fixed; /* Posição fixa para cobrir a viewport inteira */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(255, 255, 255); /* O fundo do seu body com opacidade */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Garante que fique acima de todo o conteúdo */
+}
+
+/* O loader em si, que será centralizado pela overlay */
+.pong-loader {
+  position: relative; /* A posição absoluta do ::before será relativa a este elemento */
+  height: 40px;
+  width: 6px;
+  background-color: transparent;
+  animation: paddles 0.75s ease-out infinite;
+  transform: translate3d(0,0,0);
+}
+
+/* O seletor &:before foi convertido para .pong-loader::before */
+.pong-loader::before {
+  content: "";
+  position: absolute;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  top: 15px;
+  width: 10px;
+  height: 10px;
+  background-color: #ff0000; /* Cor mais escura para contraste com o fundo claro */
+  border-radius: 50%;
+  animation: ballbounce 0.6s ease-out infinite;
+}
+
+@keyframes paddles {
+  0% {
+    box-shadow: -25px -10px 0px #333, 25px 10px 0px #333;
+  }
+  50% {
+    box-shadow: -25px 8px 0px #333, 25px -10px 0px #333;
+  }
+  100% {
+    box-shadow: -25px -10px 0px #333, 25px 10px 0px #333;
+  }
+}
+
+@keyframes ballbounce {
+  0% {
+    transform: translateX(-20px) scale(1, 1.2);
+  }
+  25% {
+    transform: scale(1.2, 1);
+  }
+  50% {
+    transform: translateX(15px) scale(1, 1.2);
+  }
+  75% {
+    transform: scale(1.2, 1);
+  }
+  100% {
+    transform: translateX(-20px);
+  }
+}
+
+/* Custom Scrollbar for Webkit Browsers (Chrome, Safari) */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: #1f2937; /* Cor do fundo da trilha (cinza escuro) */
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #4b5563; /* Cor da barra de rolagem (cinza médio) */
+  border-radius: 10px;
+  border: 2px solid #1f2937; /* Adiciona uma pequena borda da cor da trilha */
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #6b7280; /* Cor ao passar o mouse */
 }

@@ -1,0 +1,36 @@
+# --- Estágio 1: Builder ---
+# Compila a aplicação Next.js
+FROM node:20-alpine AS builder
+WORKDIR /app/frontend
+
+# Copia os arquivos de dependência
+COPY package.json package-lock.json ./
+
+# Instala as dependências
+RUN npm install
+
+# Copia o resto do código-fonte
+COPY . .
+
+# Roda o build de produção do Next.js
+RUN npm run build
+
+# --- Estágio 2: Runner ---
+# A imagem final que rodará a aplicação
+FROM node:20-alpine
+WORKDIR /app/frontend
+
+# Define o ambiente para produção
+ENV NODE_ENV=production
+
+# Copia os arquivos otimizados do estágio de build
+COPY --from=builder /app/frontend/public ./public
+COPY --from=builder /app/frontend/.next ./.next
+COPY --from=builder /app/frontend/node_modules ./node_modules
+COPY --from=builder /app/frontend/package.json ./package.json
+
+# Expõe a porta que o Next.js usa por padrão
+EXPOSE 3000
+
+# Comando para iniciar o servidor Next.js
+CMD ["npm", "start"]
