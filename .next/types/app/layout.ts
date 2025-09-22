@@ -1,4 +1,4 @@
-// File: C:\Users\24250282\Documents\ProjetoChamada\zelos-frontend\app\layout.js
+// File: C:\Users\ender\Downloads\ProjetoChamada\zelos-frontend\app\layout.js
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

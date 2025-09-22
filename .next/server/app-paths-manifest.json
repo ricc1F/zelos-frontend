@@ -1,11 +1,4 @@
 {
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/login/page": "app/login/page.js",
-  "/_not-found/page": "app/_not-found/page.js",
-  "/tecnico/chat/page": "app/tecnico/chat/page.js",
-  "/user/chat/page": "app/user/chat/page.js",
-  "/admin/chat/page": "app/admin/chat/page.js",
-  "/admin/page": "app/admin/page.js",
-  "/tecnico/page": "app/tecnico/page.js",
-  "/admin/apontamento/page": "app/admin/apontamento/page.js"
+  "/page": "app/page.js",
+  "/login/user/page": "app/login/user/page.js"
 }
